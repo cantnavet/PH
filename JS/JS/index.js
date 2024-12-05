@@ -43,7 +43,7 @@ function init() {
 
         toNormal(); // main binary normalization method
 
-        if (i % skipsteps === 0) printp();
+        if (i % skipsteps == 0) printp();
 
         if (sleeptimems > 0) {
             sleep(sleeptimems).then(() => {
@@ -52,7 +52,7 @@ function init() {
         }
 
         // Optional check to print and stop when certain condition is met
-        // if (f[a][1] === 4) {
+        // if (f[a][1] == 4) {
         //     printp();
         //     console.log(`i ${i}`);
         //     break;
@@ -84,10 +84,10 @@ function insidepart() {
             if (f[j][0] < f[j + 1][0] && f[j][0] < f[w][0]) {
                 l = f[w][0] - f[j][0];
                 for (let k = 0; k < w - j; k++) {
-                    if (f[j + k][0] + l !== f[w + k][0] || f[j + k][1] !== f[w + k][1] || f[j + k][1] < f[j][1]) {
+                    if (f[j + k][0] + l != f[w + k][0] || f[j + k][1] != f[w + k][1] || f[j + k][1] < f[j][1]) {
                         break;
                     }
-                    if (k === w - j - 1) {
+                    if (k == w - j - 1) {
                         if (steps) {
                             printp();
                             console.log(" = ");
@@ -118,12 +118,12 @@ function equalpart() {
                 w = j;
                 continue;
             }
-            if (f[j][0] === f[w][0]) {
+            if (f[j][0] == f[w][0]) {
                 for (let k = 0; k < w - j; k++) {
-                    if (f[j + k][0] !== f[w + k][0] || f[j + k][1] !== f[w + k][1]) {
+                    if (f[j + k][0] != f[w + k][0] || f[j + k][1] != f[w + k][1]) {
                         break;
                     }
-                    if (k === w - j - 1) {
+                    if (k == w - j - 1) {
                         if (steps) {
                             printp();
                             console.log(" = ");
@@ -146,19 +146,19 @@ function equalpart() {
 function printp() {
     pr="";
     for (let i = 0; i <= f.length; i++) {
-        if (f[i][0] !== 0) {
+        if (f[i][0] != 0) {
             pr+="<span style='font-size: "+defaultfsize/(layersizede**f[i][0]*termsizede**(i))+"px;'>P"+f[i][1];
             if (f[i + 1] && f[i + 1][0] > f[i][0]) {
                 pr+="(</span>";
             }
-            if (f[i + 1] && f[i + 1][0] === f[i][0]) {
+            if (f[i + 1] && f[i + 1][0] == f[i][0]) {
                 pr+="+</span>"
             }
             if (f[i + 1] && f[i + 1][0] < f[i][0]) {
-                for (let j = 0; j < f[i][0] - f[i + 1][0] - (f[i + 1][0] === 0 ? 1 : 0); j++) {
+                for (let j = 0; j < f[i][0] - f[i + 1][0] - (f[i + 1][0] == 0 ? 1 : 0); j++) {
                     pr+="<span style='font-size: "+defaultfsize/(layersizede**(f[i][0]-j-1)*termsizede**(i))+"px;'>)</span>";
                 }
-                if (f[i + 1][0] !== 0) {
+                if (f[i + 1][0] != 0) {
                     pr+="<span style='font-size: "+defaultfsize/(layersizede**(f[i+1][0])*termsizede**(i))+"px;'>+</span>";
                 }
             }

@@ -19,7 +19,6 @@ const layersizede = 1.35;    //内层大小衰减
 const termsizede = 1.035;    //项大小衰减
 let n = "1";
 let d = "1";
-var speed = parseInt(document.getElementById("speed").value);
 
 const sleeptimems = sleeptime * 1000;
 a = n.length - 1;
@@ -188,7 +187,7 @@ function autoa1(){
     if(!isauto){
         isauto=true;
         var timer = setInterval(function(){
-            var speed = parseInt(document.getElementById("speed").value);
+
             addone();
             if(!isauto){
                 clearInterval(timer);

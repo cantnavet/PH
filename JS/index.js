@@ -150,7 +150,7 @@ function printpower(){
     for (let i = 0; i <= f.length; i++) {
         if (f[i][0] !== 0) {
             color = 255/(colorrate**f[i][0]);
-            pr+="<span style='font-size: "+defaultfsize/(layersizede**f[i][0]*termsizede**(i))+"px;  color: rgb(0, "+color+","+color+");'>P"+f[i][1];
+            pr+="<span style='font-size: "+defaultfsize/(layersizede**(f[i][0]-1)*termsizede**(i))+"px;  color: rgb(0, "+color+","+color+");'>P"+f[i][1];
             if (f[i + 1] && f[i + 1][0] > f[i][0]) {
                 pr+="</span><sup>";
             }
@@ -159,12 +159,12 @@ function printpower(){
             }
             if (f[i + 1] && f[i + 1][0] < f[i][0]) {
                 for (let j = 0; j < f[i][0] - f[i + 1][0] - (f[i + 1][0] === 0 ? 1 : 0); j++) {
-                    color = 255/(colorrate**(f[i][0]-j-1));
+                    color = 255/(colorrate**(f[i][0]-j-2));
                     pr+="</sup>";
                 }
                 if (f[i + 1][0] !== 0) {
                     color = 255/(colorrate**(f[i+1][0]));
-                    pr+="<span style='font-size: "+defaultfsize/(layersizede**(f[i+1][0])*termsizede**(i))+"px; color: rgb(0, "+color+","+color+");'>+</span>";
+                    pr+="<span style='font-size: "+defaultfsize/(layersizede**(f[i+1][0]-1)*termsizede**(i))+"px; color: rgb(0, "+color+","+color+");'>+</span>";
                 }
             }
         } else {
@@ -205,7 +205,7 @@ function printc(){
 }
 
 function printp() {
-    if (document.getElementById("print").checked){
+    if (document.getElementById("printcb").checked){
         printpower()
     }else{
         printc()

@@ -14,6 +14,12 @@ const steps = true;
 const sleeptime = 0; // in seconds
 const skipsteps = 1;
 const runtimes = 2060;
+const defaultfsize = 60;
+const layersizede = 1.35;    //内层大小衰减
+const termsizede = 1.035;    //项大小衰减
+const colorrate = 1.1;       //颜色衰减
+
+let color =255;
 let n = "1";
 let d = "1";
 
@@ -143,25 +149,29 @@ function printp() {
     pr="";
     for (let i = 0; i <= f.length; i++) {
         if (f[i][0] !== 0) {
-            pr+="P"+f[i][1];
+            color = 255/(colorrate**f[i][0]);
+            pr+="<span style='font-size: "+defaultfsize/(layersizede**f[i][0]*termsizede**(i))+"px;  color: rgb(0, "+color+","+color+");'>P"+f[i][1];
             if (f[i + 1] && f[i + 1][0] > f[i][0]) {
-                pr+="(";
+                pr+="(</span>";
             }
             if (f[i + 1] && f[i + 1][0] === f[i][0]) {
-                pr+="+"
+                pr+="+</span>"
             }
             if (f[i + 1] && f[i + 1][0] < f[i][0]) {
                 for (let j = 0; j < f[i][0] - f[i + 1][0] - (f[i + 1][0] === 0 ? 1 : 0); j++) {
-                    pr+=")";
+                    color = 255/(colorrate**(f[i][0]-j-1));
+                    pr+="<span style='font-size: "+defaultfsize/(layersizede**(f[i][0]-j-1)*termsizede**(i))+"px; color: rgb(0, "+color+","+color+");'>)</span>";
                 }
                 if (f[i + 1][0] !== 0) {
-                    pr+="+";
+                    color = 255/(colorrate**(f[i+1][0]));
+                    pr+="<span style='font-size: "+defaultfsize/(layersizede**(f[i+1][0])*termsizede**(i))+"px; color: rgb(0, "+color+","+color+");'>+</span>";
                 }
             }
         } else {
             break;
         }
     }
+    //pr+="wad<span style='font-size: 15px;'>awdawd</span>"
     document.getElementById("maintext").innerHTML=pr
 }
 
@@ -172,11 +182,37 @@ function addone(){
     printp();
 }
 
-function auto(){
+function addinone(){
+    a++; 
+    f[a] = [2, 1];
+    toNormal(); 
+    printp();
+}
+
+function autoa1(){
+    autospeed = parseInt(document.getElementById("speed").value);
+    document.getElementById("aspeed").innerHTML=autospeed;
     if(!isauto){
         isauto=true;
         var timer = setInterval(function(){
             addone();
+            if(!isauto){
+                clearInterval(timer);
+            }
+        },parseInt(1000/autospeed))
+    }else{
+        isauto=false;
+    }
+
+}
+
+function autoain1(){
+    autospeed = parseInt(document.getElementById("speed").value);
+    document.getElementById("aspeed").innerHTML=autospeed;
+    if(!isauto){
+        isauto=true;
+        var timer = setInterval(function(){
+            addinone();
             if(!isauto){
                 clearInterval(timer);
             }
@@ -192,7 +228,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-// // 使用 DOMContentLoaded 确保 DOM 完全加载后再初始化
+
 // document.addEventListener('DOMContentLoaded', (event) => {
-//     init(); // 调用初始化函数
+//     init();
 // });

@@ -8,13 +8,23 @@
 </head>
 <body style="background: black; color: rgb(200, 200, 200);">
     <div id="maintext">
-        P1
+        <span style="font-size: 60px; color: aqua;">P1</span>
     </div>
     <hr>
-    <button id="p1" onclick="addone()">+1</button>
-    <button id="auto" onclick="auto()">Auto</button>
+    <input type="number" id="speed" max="1000" min="1" value="100">
     <div style="display: flex;">
-        自动速率: <div id="aspeed">5</div>次/s
+        <button id="auto" onclick="autoa1()">Auto</button>
+        <button id="auto" onclick="autoain1()">Auto</button>
+        <div style="display: flex; margin-left: 10px;">
+            自动速率: <div id="aspeed">1</div>次/s <span style="color: rgb(100, 100, 100);">(大于100后受算力影响)</span>
+        </div>
     </div>
+
+    <br>
+    <div style="display: flex;">
+        <button id="p1" onclick="addone()">外+1</button>
+        <button id="p1" onclick="addinone()">内+1</button>
+    </div>
+
 </body>
 </html>

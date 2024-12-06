@@ -14,7 +14,7 @@ const steps = true;
 const sleeptime = 0; // in seconds
 const skipsteps = 1;
 const runtimes = 2060;
-const defaultfsize = 60;
+var defaultfsize = 40;
 const layersizede = 1.35;    //内层大小衰减
 const termsizede = 1.035;    //项大小衰减
 const colorrate = 1.1;       //颜色衰减
@@ -31,7 +31,7 @@ for (let i = 0; i < n.length; i++) {
 }   
 
 
-// 初始化函数
+// 暂存
 function init() {
 
 
@@ -40,7 +40,6 @@ function init() {
     for (let i = 0; i < runtimes; i++) {
         a++; // move pointer
 
-        // add a number to last term (唯二可以动的地方)
         f[a] = [2, 1];
 
         toNormal(); // main binary normalization method
@@ -205,6 +204,7 @@ function printc(){
 }
 
 function printp() {
+    defaultfsize = document.getElementById("fsize").value
     if (document.getElementById("printcb").checked){
         printpower()
     }else{

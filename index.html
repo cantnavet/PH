@@ -25,6 +25,24 @@
         <button id="p1" onclick="addone()">外+1</button>
         <button id="p1" onclick="addinone()">内+1</button>
     </div>
+        <br>
+    <div style="color: yellowgreen;">
+        规则：
+        <br>
+        1. Pn(...)+Pn(...) = Pn(...+P1)
+        <br>
+        2. Pn(...+Pn(...)) = Pn(...+Pn+1) when any Px in ... &lt; Pn
+    </div>
+    <br>
+    <div style="color: gray;">
+        E.g.
+        <br> 
+        <br>
+        P1+P1 <br>= P1(P1) <br>= P1(P2)
+        <br>
+        <br>
+        P1(P2(P1)+P2+P1(P2(P1)+P2)) <br>= P1(P2(P1)+P2+P2) <br>= P1(P2(P1)+P2(p1))
+    </div>
 
 </body>
 </html>

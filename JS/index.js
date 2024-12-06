@@ -145,7 +145,37 @@ function equalpart() {
     }
 }
 
-function printp() {
+function printpower(){
+    pr="";
+    for (let i = 0; i <= f.length; i++) {
+        if (f[i][0] !== 0) {
+            color = 255/(colorrate**f[i][0]);
+            pr+="<span style='font-size: "+defaultfsize/(layersizede**f[i][0]*termsizede**(i))+"px;  color: rgb(0, "+color+","+color+");'>P"+f[i][1];
+            if (f[i + 1] && f[i + 1][0] > f[i][0]) {
+                pr+="</span><sup>";
+            }
+            if (f[i + 1] && f[i + 1][0] === f[i][0]) {
+                pr+="+</span>"
+            }
+            if (f[i + 1] && f[i + 1][0] < f[i][0]) {
+                for (let j = 0; j < f[i][0] - f[i + 1][0] - (f[i + 1][0] === 0 ? 1 : 0); j++) {
+                    color = 255/(colorrate**(f[i][0]-j-1));
+                    pr+="</sup>";
+                }
+                if (f[i + 1][0] !== 0) {
+                    color = 255/(colorrate**(f[i+1][0]));
+                    pr+="<span style='font-size: "+defaultfsize/(layersizede**(f[i+1][0])*termsizede**(i))+"px; color: rgb(0, "+color+","+color+");'>+</span>";
+                }
+            }
+        } else {
+            break;
+        }
+    }
+    //pr+="wad<span style='font-size: 15px;'>awdawd</span>"
+    document.getElementById("maintext").innerHTML=pr
+}
+
+function printc(){
     pr="";
     for (let i = 0; i <= f.length; i++) {
         if (f[i][0] !== 0) {
@@ -171,8 +201,16 @@ function printp() {
             break;
         }
     }
-    //pr+="wad<span style='font-size: 15px;'>awdawd</span>"
     document.getElementById("maintext").innerHTML=pr
+}
+
+function printp() {
+    if (document.getElementById("print").checked){
+        printpower()
+    }else{
+        printc()
+    }
+    
 }
 
 function addone(){

@@ -8,7 +8,8 @@ let did = false;
 var pr="";
 var isauto = false;
 var autospeed = 5;
-var step = 0;
+var outstep = 0;
+var instep = 0;
 
 // 主要设定 (可以改这里的东西)
 const steps = true;
@@ -205,7 +206,7 @@ function printc(){
 }
 
 function printp() {
-    document.getElementById("steps").innerHTML=step
+    document.getElementById("steps").innerHTML=outstep+" / "+instep
     defaultfsize = document.getElementById("fsize").value
     if (document.getElementById("printcb").checked){
         printpower()
@@ -216,7 +217,7 @@ function printp() {
 }
 
 function addone(){
-    step++;
+    outstep++;
     a++; 
     f[a] = [1, 1];
     toNormal(); 
@@ -224,6 +225,7 @@ function addone(){
 }
 
 function addinone(){
+    instep++;
     a++; 
     f[a] = [2, 1];
     toNormal(); 
